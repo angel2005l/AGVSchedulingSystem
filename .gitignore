@@ -20,3 +20,4 @@ bin
 *.tar.gz
 *.rar
 /.settings/
+/agvScheduling/
