@@ -81,7 +81,7 @@ public class EdgeDao {
 		DruidPooledConnection conn = instance.getConnection();
 		PreparedStatement psmt = null;
 		try {
-			String sql = "insert into avg_edge(edge_code,edge_name,start_vertex_code,end_vertex_code,edge_distance,edge_status,create_user_code,create_time) values(?,?,?,?,?,?,?,?)";
+			String sql = "insert into agv_edge(edge_code,edge_name,start_vertex_code,end_vertex_code,edge_distance,edge_status,create_user_code,create_time) values(?,?,?,?,?,?,?,?)";
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, insertObj.getEdgeCode());
 			psmt.setString(2, insertObj.getEdgeName());

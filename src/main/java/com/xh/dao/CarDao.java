@@ -40,11 +40,11 @@ public class CarDao {
 			rs = psmt.executeQuery();
 			while (rs.next()) {
 				Car carObj = new Car();
-				carObj.setCarCode("car_code");
-				carObj.setCarName("car_name");
+				carObj.setCarCode(rs.getString("car_code"));
+				carObj.setCarName(rs.getString("car_name"));
 				carObj.setCarFactoryCode(rs.getString("car_factory_code"));
 				carObj.setCarAverageSpeed(rs.getDouble("car_average_speed"));
-				carObj.setCreateUserName("create_user_code");
+				carObj.setCreateUserName(rs.getString("create_user_name"));
 				carObj.setCreateTime(rs.getDate("create_time"));
 				carList.add(carObj);
 			}
@@ -88,11 +88,11 @@ public class CarDao {
 		} catch (SQLException e) {
 			conn.rollback();
 			log.error("批量新增小车信息异常,异常原因:【" + e.toString() + "】");
-			return 1;
+			return 0;
 		} finally {
 			SqlPoolUtil.closeConnection(conn, psmt, null);
 		}
-		return 0;
+		return 1;
 	}
 
 }
