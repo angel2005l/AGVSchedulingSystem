@@ -42,7 +42,7 @@ public class VertexDao {
 				vertexObj.setVerCode(rs.getString("ver_code"));
 				vertexObj.setVerName(rs.getString("ver_name"));
 				vertexObj.setVerFactoryCode(rs.getString("ver_factory_code"));
-				vertexObj.setCreate_user_name(rs.getString("create_user_name"));
+				vertexObj.setCreateUserName(rs.getString("create_user_name"));
 				vertexObj.setCreateTime(rs.getDate("create_time"));
 				vertexList.add(vertexObj);
 			}
@@ -80,16 +80,53 @@ public class VertexDao {
 				vertexObj.setVerCode(rs.getString("ver_code"));
 				vertexObj.setVerName(rs.getString("ver_name"));
 				vertexObj.setVerFactoryCode(rs.getString("ver_factory_code"));
-				vertexObj.setCreate_user_name(rs.getString("create_user_name"));
+				vertexObj.setCreateUserName(rs.getString("create_user_name"));
 				vertexObj.setCreateTime(rs.getDate("create_time"));
 				return vertexObj;
 			}
 		} catch (Exception e) {
-			log.error("查询特定点数据库操作异常,异常原因:【" + e.toString() + "】");
+			log.error("根据编码查询特定点数据库操作异常,异常原因:【" + e.toString() + "】");
 		} finally {
 			SqlPoolUtil.closeConnection(conn, psmt, rs);
 		}
+		return null;
+	}
 
+	/**
+	 * 
+	 * @Title: selectVertexById
+	 * @Description: 查询特定的点根据id
+	 * @author 黄官易
+	 * @param vId
+	 * @return
+	 * @throws Exception
+	 * @return Vertex
+	 * @date 2018年8月8日
+	 * @version 1.0
+	 */
+	public Vertex selectVertexById(int vId) throws Exception {
+		DruidPooledConnection conn = instance.getConnection();
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		try {
+			String sql = "select * from agv_vertex where id = ? ";
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, vId);
+			rs = psmt.executeQuery();
+			if (rs.next()) {
+				Vertex vertexObj = new Vertex();
+				vertexObj.setVerCode(rs.getString("ver_code"));
+				vertexObj.setVerName(rs.getString("ver_name"));
+				vertexObj.setVerFactoryCode(rs.getString("ver_factory_code"));
+				vertexObj.setCreateUserName(rs.getString("create_user_name"));
+				vertexObj.setCreateTime(rs.getDate("create_time"));
+				return vertexObj;
+			}
+		} catch (Exception e) {
+			log.error("根据id查询特定点数据库操作异常,异常原因:【" + e.toString() + "】");
+		} finally {
+			SqlPoolUtil.closeConnection(conn, psmt, rs);
+		}
 		return null;
 	}
 
@@ -103,7 +140,7 @@ public class VertexDao {
 			psmt.setString(1, insertObj.getVerCode());
 			psmt.setString(2, insertObj.getVerName());
 			psmt.setString(3, insertObj.getVerFactoryCode());
-			psmt.setString(4, insertObj.getCreate_user_name());
+			psmt.setString(4, insertObj.getCreateUserName());
 			psmt.setDate(5, insertObj.getCreateTime());
 			return psmt.executeUpdate();
 		} catch (SQLException e) {
