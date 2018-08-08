@@ -7,7 +7,7 @@ public class Vertex {
 	private String verCode;
 	private String verName;
 	private String verFactoryCode;
-	private String create_user_name;
+	private String createUserName;
 	private Date createTime;
 
 	public Vertex() {
@@ -45,12 +45,12 @@ public class Vertex {
 		this.verFactoryCode = verFactoryCode;
 	}
 
-	public String getCreate_user_name() {
-		return create_user_name;
+	public String getCreateUserName() {
+		return createUserName;
 	}
 
-	public void setCreate_user_name(String create_user_name) {
-		this.create_user_name = create_user_name;
+	public void setCreateUserName(String createUserName) {
+		this.createUserName = createUserName;
 	}
 
 	public Date getCreateTime() {
@@ -63,8 +63,8 @@ public class Vertex {
 
 	@Override
 	public String toString() {
-		return "Vertex [verCode=" + verCode + ", verName=" + verName + ", verFactoryCode=" + verFactoryCode
-				+ ", create_user_name=" + create_user_name + ", createTime=" + createTime + "]";
+		return "Vertex [id=" + id + ", verCode=" + verCode + ", verName=" + verName + ", verFactoryCode="
+				+ verFactoryCode + ", createUserName=" + createUserName + ", createTime=" + createTime + "]";
 	}
 
 }

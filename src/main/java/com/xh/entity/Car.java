@@ -10,6 +10,8 @@ public class Car {
 	private double carAverageSpeed;
 	private String createUserName;
 	private Date createTime;
+	private String startVertexCode;
+	private String endVertexCode;
 
 	public Car() {
 	}
@@ -70,11 +72,27 @@ public class Car {
 		this.createTime = createTime;
 	}
 
+	public String getStartVertexCode() {
+		return startVertexCode;
+	}
+
+	public void setStartVertexCode(String startVertexCode) {
+		this.startVertexCode = startVertexCode;
+	}
+
+	public String getEndVertexCode() {
+		return endVertexCode;
+	}
+
+	public void setEndVertexCode(String endVertexCode) {
+		this.endVertexCode = endVertexCode;
+	}
+
 	@Override
 	public String toString() {
 		return "Car [id=" + id + ", carCode=" + carCode + ", carName=" + carName + ", carFactoryCode=" + carFactoryCode
 				+ ", carAverageSpeed=" + carAverageSpeed + ", createUserName=" + createUserName + ", createTime="
-				+ createTime + "]";
+				+ createTime + ", startVertexCode=" + startVertexCode + ", endVertexCode=" + endVertexCode + "]";
 	}
 
 }
