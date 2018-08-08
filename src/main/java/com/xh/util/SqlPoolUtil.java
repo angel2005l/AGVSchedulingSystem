@@ -90,7 +90,7 @@ public class SqlPoolUtil {
 		return p;
 	}
 
-	public static void closeConnection(DruidPooledConnection conn, PreparedStatement pstmt, ResultSet rs) {
+	public static void closeConnection(DruidPooledConnection conn, PreparedStatement psmt, ResultSet rs) {
 		try {
 			if (rs != null) {
 				rs.close();
@@ -100,9 +100,9 @@ public class SqlPoolUtil {
 			ex1.printStackTrace();
 		} finally {
 			try {
-				if (pstmt != null) {
-					pstmt.close();
-					pstmt = null;
+				if (psmt != null) {
+					psmt.close();
+					psmt = null;
 				}
 			} catch (SQLException ex2) {
 				ex2.printStackTrace();
