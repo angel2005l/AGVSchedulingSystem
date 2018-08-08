@@ -3,6 +3,7 @@ package com.xh.entity;
 import java.sql.Date;
 
 public class Car {
+	private int id;
 	private String carCode;
 	private String carName;
 	private String carFactoryCode;
@@ -11,6 +12,14 @@ public class Car {
 	private Date createTime;
 
 	public Car() {
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getCarCode() {
@@ -63,7 +72,7 @@ public class Car {
 
 	@Override
 	public String toString() {
-		return "Car [carCode=" + carCode + ", carName=" + carName + ", carFactoryCode=" + carFactoryCode
+		return "Car [id=" + id + ", carCode=" + carCode + ", carName=" + carName + ", carFactoryCode=" + carFactoryCode
 				+ ", carAverageSpeed=" + carAverageSpeed + ", createUserName=" + createUserName + ", createTime="
 				+ createTime + "]";
 	}

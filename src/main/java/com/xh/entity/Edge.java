@@ -3,16 +3,25 @@ package com.xh.entity;
 import java.sql.Date;
 
 public class Edge {
+	private int id;
 	private String edgeCode;
 	private String edgeName;
 	private String startVertexCode;
 	private String endVertexCode;
-	private double edge_distance;
-	private String edge_status;
+	private double edgeDistance;
+	private String edgeStatus;
 	private String createUserCode;
 	private Date createTime;
 
 	public Edge() {
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getEdgeCode() {
@@ -47,20 +56,20 @@ public class Edge {
 		this.endVertexCode = endVertexCode;
 	}
 
-	public double getEdge_distance() {
-		return edge_distance;
+	public double getEdgeDistance() {
+		return edgeDistance;
 	}
 
-	public void setEdge_distance(double edge_distance) {
-		this.edge_distance = edge_distance;
+	public void setEdgeDistance(double edgeDistance) {
+		this.edgeDistance = edgeDistance;
 	}
 
-	public String getEdge_status() {
-		return edge_status;
+	public String getEdgeStatus() {
+		return edgeStatus;
 	}
 
-	public void setEdge_status(String edge_status) {
-		this.edge_status = edge_status;
+	public void setEdgeStatus(String edgeStatus) {
+		this.edgeStatus = edgeStatus;
 	}
 
 	public String getCreateUserCode() {
@@ -81,9 +90,10 @@ public class Edge {
 
 	@Override
 	public String toString() {
-		return "Edge [edgeCode=" + edgeCode + ", edgeName=" + edgeName + ", startVertexCode=" + startVertexCode
-				+ ", endVertexCode=" + endVertexCode + ", edge_distance=" + edge_distance + ", edge_status="
-				+ edge_status + ", createUserCode=" + createUserCode + ", createTime=" + createTime + "]";
+		return "Edge [id=" + id + ", edgeCode=" + edgeCode + ", edgeName=" + edgeName + ", startVertexCode="
+				+ startVertexCode + ", endVertexCode=" + endVertexCode + ", edgeDistance=" + edgeDistance
+				+ ", edgeStatus=" + edgeStatus + ", createUserCode=" + createUserCode + ", createTime=" + createTime
+				+ "]";
 	}
 
 }

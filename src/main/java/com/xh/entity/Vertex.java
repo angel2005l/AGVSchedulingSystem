@@ -3,6 +3,7 @@ package com.xh.entity;
 import java.sql.Date;
 
 public class Vertex {
+	private int id;
 	private String verCode;
 	private String verName;
 	private String verFactoryCode;
@@ -10,6 +11,14 @@ public class Vertex {
 	private Date createTime;
 
 	public Vertex() {
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getVerCode() {

@@ -3,7 +3,7 @@ package com.xh.entity;
 import java.sql.Date;
 
 public class VertexRunningRegulate {
-
+	private int id;
 	private String vrrCode;
 	private String carCode;
 	private String startVertexCode;
@@ -14,6 +14,14 @@ public class VertexRunningRegulate {
 	private String vrrStatus;
 
 	public VertexRunningRegulate() {
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getVrrCode() {
@@ -82,9 +90,9 @@ public class VertexRunningRegulate {
 
 	@Override
 	public String toString() {
-		return "VertexRunningRegulate [vrrCode=" + vrrCode + ", carCode=" + carCode + ", startVertexCode="
-				+ startVertexCode + ", endVertexCode=" + endVertexCode + ", vrrOdo=" + vrrOdo + ", vrrStartTime="
-				+ vrrStartTime + ", vrrEndTime=" + vrrEndTime + ", vrrStatus=" + vrrStatus + "]";
+		return "VertexRunningRegulate [id=" + id + ", vrrCode=" + vrrCode + ", carCode=" + carCode
+				+ ", startVertexCode=" + startVertexCode + ", endVertexCode=" + endVertexCode + ", vrrOdo=" + vrrOdo
+				+ ", vrrStartTime=" + vrrStartTime + ", vrrEndTime=" + vrrEndTime + ", vrrStatus=" + vrrStatus + "]";
 	}
 
 }
