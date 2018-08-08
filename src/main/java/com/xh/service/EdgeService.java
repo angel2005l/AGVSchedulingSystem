@@ -26,17 +26,12 @@ public class EdgeService {
 		insertObj.setEdgeStatus("normal");
 		insertObj.setCreateUserCode("新海管理员");
 		insertObj.setCreateTime(new Date(System.currentTimeMillis()));
-
 		try {
 			dao.insertEdge(insertObj);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			log.error("添加边（关联关系）异常,异常原因:【" + e.toString() + "】");
 			e.printStackTrace();
 		}
-	}
-	public static void main(String[] arg) {
-		EdgeService service = new EdgeService();
-		service.addEdge();
 	}
 
 }
