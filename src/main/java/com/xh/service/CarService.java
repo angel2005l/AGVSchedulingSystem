@@ -41,9 +41,12 @@ public class CarService {
 		}
 	}
 
-	public List<Car> initCar() throws Exception {
-		List<Car> carList = dao.selectCarAll();
-		for (Car car : carList) {
+	public Car initCar() throws Exception {
+		synchronized (this) {
+			List<Car> carList = dao.selectCarAll();
+			// [0,10)
+			Car car = carList.get((int) (Math.random() * 10));
+
 			// [1,11) 前闭后开
 			int startVertexNo = (int) (Math.random() * 10) + 1;
 			int endVertexNo = (int) (Math.random() * 10) + 1;
@@ -51,25 +54,12 @@ public class CarService {
 			Vertex endVertex = vtd.selectVertexById(endVertexNo);
 			car.setStartVertexCode(startVertex.getVerCode());
 			car.setEndVertexCode(endVertex.getVerCode());
-			System.err.println("小车名:"+car.getCarName());
-			System.err.println("起始站点:"+startVertex.getVerName());
-			System.err.println("结束站点："+endVertex.getVerName());
+			System.err.println("小车名:" + car.getCarName());
+			System.err.println("起始站点:" + startVertex.getVerName());
+			System.err.println("结束站点：" + endVertex.getVerName());
 			System.err.println("-------------------------------------------");
-		}
-		return carList;
-	}
-
-	public static void main(String[] arg) {
-		CarService service = new CarService();
-
-		try {
-			List<Car> initCar = service.initCar();
-			for (Car car : initCar) {
-				System.err.println(car);
-			}
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			return car;
 		}
 	}
+
 }
