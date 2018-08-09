@@ -100,4 +100,33 @@ public class EdgeDao {
 		}
 	}
 
+	// 逻辑计算层
+	// 搜索相邻的所有节点除了之前的初始节点外
+	public List<Edge> selectEdgeForInit(String currentVertexCode, String lastVertexCode) throws Exception {
+		StringBuffer sql = new StringBuffer(
+				"SELECT vertex_code,edge_status,edge_distance FROM (SELECT end_vertex_code AS vertex_code ,edge_status,edge_distance FROM agv_edge WHERE start_vertex_code =? UNION SELECT start_vertex_code AS vertex_code,edge_status,edge_distance FROM agv_edge WHERE end_vertex_code=?) a WHERE edge_status='normal' and vertex_code NOT IN (?)");
+		DruidPooledConnection conn = instance.getConnection();
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		List<Edge> result = new ArrayList<Edge>();
+		try {
+			psmt = conn.prepareStatement(sql.toString());
+			psmt.setString(1, currentVertexCode);
+			psmt.setString(2, currentVertexCode);
+			psmt.setString(3, lastVertexCode);
+			rs = psmt.executeQuery();
+			while (rs.next()) {
+				Edge edge = new Edge();
+				edge.setEndVertexCode(rs.getString("vertex_code"));
+				edge.setEdgeDistance(rs.getDouble("edge_distance"));
+				result.add(edge);
+			}
+		} catch (Exception e) {
+			log.error("查询相邻顶点数据库操作异常,异常原因:【" + e.toString() + "】");
+		} finally {
+			SqlPoolUtil.closeConnection(conn, psmt, rs);
+		}
+		return result;
+	}
+
 }
