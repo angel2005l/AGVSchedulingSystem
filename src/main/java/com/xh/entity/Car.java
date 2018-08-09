@@ -1,6 +1,9 @@
 package com.xh.entity;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 
 public class Car {
 	private int id;
@@ -12,8 +15,14 @@ public class Car {
 	private Date createTime;
 	private String startVertexCode;
 	private String endVertexCode;
+	private int currentIndex;
+	private String[] runningPathArr;
+	private List<Edge> routeScheme;
 
 	public Car() {
+		// 初始化路线规划
+		this.currentIndex = -1;// 未开始
+		this.routeScheme = new ArrayList<Edge>();
 	}
 
 	public int getId() {
@@ -86,6 +95,66 @@ public class Car {
 
 	public void setEndVertexCode(String endVertexCode) {
 		this.endVertexCode = endVertexCode;
+	}
+
+	public String[] getRunningPathArr() {
+		return runningPathArr;
+	}
+
+	public void setRunningPathArr(String[] runningPathArr) {
+		this.runningPathArr = runningPathArr;
+	}
+
+	public List<Edge> getRouteScheme() {
+		return routeScheme;
+	}
+
+	public void initRunningStatus(String currentVertexCode) {
+		// 开始遍历
+		List<Edge> edgeList = this.getRouteScheme();
+		for (int i = 0; i < edgeList.size(); i++) {
+			if (i == this.currentIndex) {
+				continue;
+			}
+			Edge edge = edgeList.get(i);
+			String vertexCode = edge.getEndVertexCode();// 获取当前的顶点编码
+			if (vertexCode.indexOf(currentVertexCode) > -1) {
+				this.setCurrentIndex(i);// 选取当前的线路下标
+				this.setRunningPathArr(vertexCode.split(","));
+			}
+		}
+		System.err.println("agv小车【" + this.carName + "】,运行配置初始化完成 ,当前已切换到【" + this.currentIndex + 1 + "】线路,共有路线【"
+				+ this.routeScheme.size() + "】条");
+	}
+
+	public void setRouteScheme(List<Edge> routeScheme) {
+		// 实现自定义的list排序
+		Comparator<Edge> edgeCpt = new Comparator<Edge>() {
+			@Override
+			public int compare(Edge o1, Edge o2) {
+				double double1 = o1.getEdgeDistance();
+				double double2 = o2.getEdgeDistance();
+				if (Double.compare(double1, double2) > 0) {
+					return 1;
+				} else if (Double.compare(double1, double2) == 0) {
+					if (o1.getEndVertexCode().length() > o2.getEndVertexCode().length()) {
+						return 1;
+					}
+				}
+				return -1;
+			}
+
+		};
+		routeScheme.sort(edgeCpt);
+		this.routeScheme = routeScheme;
+	}
+
+	public int getCurrentIndex() {
+		return currentIndex;
+	}
+
+	public void setCurrentIndex(int currentIndex) {
+		this.currentIndex = currentIndex;
 	}
 
 	@Override
