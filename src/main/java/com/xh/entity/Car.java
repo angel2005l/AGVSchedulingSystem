@@ -121,6 +121,7 @@ public class Car {
 			if (vertexCode.indexOf(currentVertexCode) > -1) {
 				this.setCurrentIndex(i);// 选取当前的线路下标
 				this.setRunningPathArr(vertexCode.split(","));
+				break;
 			}
 		}
 		System.err.println("agv小车【" + this.carName + "】,运行配置初始化完成 ,当前已切换到【" + this.currentIndex + 1 + "】线路,共有路线【"
