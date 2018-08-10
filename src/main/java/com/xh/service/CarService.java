@@ -4,6 +4,9 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.xh.dao.CarDao;
 import com.xh.dao.VertexDao;
 import com.xh.entity.Car;
@@ -12,6 +15,7 @@ import com.xh.util.DateUtil;
 import com.xh.util.StrUtil;
 
 public class CarService {
+	private static Logger log = LoggerFactory.getLogger(CarService.class);
 	private CarDao dao = new CarDao();
 	private VertexDao vtd = new VertexDao();
 
@@ -58,6 +62,10 @@ public class CarService {
 			System.err.println("起始站点:" + startVertex.getVerName());
 			System.err.println("结束站点：" + endVertex.getVerName());
 			System.err.println("-------------------------------------------");
+			log.info("小车名:" + car.getCarName());
+			log.info("起始站点:" + startVertex.getVerName());
+			log.info("结束站点：" + endVertex.getVerName());
+			log.info("-------------------------------------------");
 			return car;
 		}
 	}
