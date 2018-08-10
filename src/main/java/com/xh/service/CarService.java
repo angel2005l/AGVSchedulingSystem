@@ -19,7 +19,15 @@ public class CarService {
 	private CarDao dao = new CarDao();
 	private VertexDao vtd = new VertexDao();
 
-	// 添加小车信息
+	/**
+	 * 
+	 * @Title: addCar
+	 * @Description: 添加小车信息（随机，默认）
+	 * @author 黄官易
+	 * @return void
+	 * @date 2018年8月10日
+	 * @version 1.0
+	 */
 	public void addCar() {
 		List<Car> insertObj = new ArrayList<Car>();
 		for (int i = 1; i < 11; i++) {
@@ -45,13 +53,23 @@ public class CarService {
 		}
 	}
 
+	/**
+	 * 
+	 * @Title: initCar
+	 * @Description: 初始化小车
+	 * @author 黄官易
+	 * @return
+	 * @throws Exception
+	 * @return Car
+	 * @date 2018年8月10日
+	 * @version 1.0
+	 */
 	public Car initCar() throws Exception {
 		synchronized (this) {
 			List<Car> carList = dao.selectCarAll();
-			// [0,10)
+			// [0,10)前闭后开 取10辆车任意一辆
 			Car car = carList.get((int) (Math.random() * 10));
-
-			// [1,11) 前闭后开
+			// [1,11) 前闭后开 取10个顶点的任意一点
 			int startVertexNo = (int) (Math.random() * 10) + 1;
 			int endVertexNo = (int) (Math.random() * 10) + 1;
 			Vertex startVertex = vtd.selectVertexById(startVertexNo);

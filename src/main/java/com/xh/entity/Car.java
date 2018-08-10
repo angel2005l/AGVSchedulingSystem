@@ -109,6 +109,16 @@ public class Car {
 		return routeScheme;
 	}
 
+	/**
+	 * 
+	 * @Title: initRunningStatus
+	 * @Description: 初始化主线路
+	 * @author 黄官易
+	 * @param currentVertexCode
+	 * @return void
+	 * @date 2018年8月10日
+	 * @version 1.0
+	 */
 	public void initRunningStatus(String currentVertexCode) {
 		// 开始遍历
 		List<Edge> edgeList = this.getRouteScheme();
@@ -127,7 +137,7 @@ public class Car {
 		}
 		System.err.println("agv小车【" + this.carName + "】,运行配置初始化完成 ,当前已切换到【" + (this.currentIndex + 1) + "】线路,共有路线【"
 				+ this.routeScheme.size() + "】条");
-		if (nextIndex >= edgeList.size()) {
+		if (nextIndex >= edgeList.size()) {// 当下边大于或等于当前线路集合时，重置下标
 			this.setCurrentIndex(-1);
 		}
 	}

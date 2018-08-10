@@ -67,6 +67,7 @@ public class AGVSchedulingController extends Thread {
 
 			} else {
 				while (currentIndex == car.getCurrentIndex() && car.getRouteScheme().size() > 1) {
+					Thread.sleep(2 * 1000);// 线程休眠两秒
 					car.initRunningStatus(currentVertexCode);// 切换线路
 					/*
 					 * System.err.println("当前线路被占用,进行线路切换。切换请求" + currentIndex +"---"+

@@ -9,7 +9,15 @@ import com.xh.util.StrUtil;
 
 public class VertexService {
 	private VertexDao dao = new VertexDao();
-
+	/**
+	 * 
+	 * @Title: addVertex  
+	 * @Description: 新增站点
+	 * @author 黄官易    
+	 * @return void 
+	 * @date 2018年8月10日  
+	 * @version 1.0
+	 */
 	public void addVertex() {
 		for (int i = 1; i < 11; i++) {
 			Vertex insertObj = new Vertex();

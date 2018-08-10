@@ -1,7 +1,6 @@
 package com.xh.service;
 
 import java.sql.Date;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -17,6 +16,15 @@ public class EdgeService {
 
 	private EdgeDao dao = new EdgeDao();
 
+	/**
+	 * 
+	 * @Title: addEdge
+	 * @Description: 添加小车信息
+	 * @author 黄官易
+	 * @return void
+	 * @date 2018年8月10日
+	 * @version 1.0
+	 */
 	public void addEdge() {
 		Edge insertObj = new Edge();
 		insertObj.setEdgeCode(
@@ -36,7 +44,22 @@ public class EdgeService {
 		}
 	}
 
-	// 建立模型
+	/**
+	 * 
+	 * @Title: initEdges
+	 * @Description: 初始化小车线路
+	 * @author 黄官易
+	 * @param currentVertexCode
+	 * @param lastVertexCode
+	 * @param endVertexCode
+	 * @param tempStr
+	 * @param tempDistance
+	 * @param roots
+	 * @return
+	 * @return List<Edge>
+	 * @date 2018年8月10日
+	 * @version 1.0
+	 */
 	public List<Edge> initEdges(String currentVertexCode, String lastVertexCode, String endVertexCode, String tempStr,
 			double tempDistance, List<Edge> roots) {
 		// 校验数据 当前顶点与目标顶点不能为空
@@ -81,23 +104,24 @@ public class EdgeService {
 			}
 
 		} catch (Exception e) {
-			log.error("数据");
+			log.error("初始化小车线路异常,异常原因:【" + e.toString() + "】");
 		}
 		return roots;
 	}
 
-	public static void main(String[] arg) {
-		EdgeService service = new EdgeService();
-		List<Edge> initEdges = service.initEdges("VER201808081559530532", "", "VER201808081559530975", "", 0d,
-				new ArrayList<Edge>());
-		if (null != initEdges && initEdges.isEmpty()) {
-			return;
-		}
-		for (Edge obj : initEdges) {
-			System.err.println("路线" + obj.getEndVertexCode());
-			System.err.println("路线公里数" + obj.getEdgeDistance());
-		}
-
-	}
+	// public static void main(String[] arg) {
+	// EdgeService service = new EdgeService();
+	// List<Edge> initEdges = service.initEdges("VER201808081559530532", "",
+	// "VER201808081559530975", "", 0d,
+	// new ArrayList<Edge>());
+	// if (null != initEdges && initEdges.isEmpty()) {
+	// return;
+	// }
+	// for (Edge obj : initEdges) {
+	// System.err.println("路线" + obj.getEndVertexCode());
+	// System.err.println("路线公里数" + obj.getEdgeDistance());
+	// }
+	//
+	// }
 
 }
