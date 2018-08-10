@@ -112,7 +112,8 @@ public class Car {
 	public void initRunningStatus(String currentVertexCode) {
 		// 开始遍历
 		List<Edge> edgeList = this.getRouteScheme();
-		for (int i = 0; i < edgeList.size(); i++) {
+		int nextIndex = this.getCurrentIndex() + 1;
+		for (int i = nextIndex; i < edgeList.size(); i++) {
 			if (i == this.currentIndex) {
 				continue;
 			}
@@ -124,8 +125,11 @@ public class Car {
 				break;
 			}
 		}
-		System.err.println("agv小车【" + this.carName + "】,运行配置初始化完成 ,当前已切换到【" + this.currentIndex + 1 + "】线路,共有路线【"
+		System.err.println("agv小车【" + this.carName + "】,运行配置初始化完成 ,当前已切换到【" + (this.currentIndex + 1) + "】线路,共有路线【"
 				+ this.routeScheme.size() + "】条");
+		if (nextIndex >= edgeList.size()) {
+			this.setCurrentIndex(-1);
+		}
 	}
 
 	public void setRouteScheme(List<Edge> routeScheme) {
