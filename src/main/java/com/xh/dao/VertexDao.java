@@ -130,7 +130,17 @@ public class VertexDao {
 		return null;
 	}
 
-	// 新增点信息
+	/**
+	 * 
+	 * @Title: insertVertex
+	 * @Description: 新增点信息
+	 * @param insertObj
+	 * @return
+	 * @throws Exception
+	 * @return int
+	 * @date 2018年8月10日
+	 * @version 1.0
+	 */
 	public int insertVertex(Vertex insertObj) throws Exception {
 		DruidPooledConnection conn = instance.getConnection();
 		PreparedStatement psmt = null;

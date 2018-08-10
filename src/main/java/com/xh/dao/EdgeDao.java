@@ -56,15 +56,6 @@ public class EdgeDao {
 		return edgeList;
 	}
 
-	// 根据首/结点查询所有的文件信息
-	public Edge selectEdgeByStartVertexCodeWithEndVertexCode(String startVertexCode, String endVertexCode)
-			throws Exception {
-
-		// 待定 测试sql语句
-
-		return null;
-	}
-
 	/**
 	 * 
 	 * @Title: insertEdge
@@ -100,8 +91,19 @@ public class EdgeDao {
 		}
 	}
 
-	// 逻辑计算层
-	// 搜索相邻的所有节点除了之前的初始节点外
+	/**
+	 * 
+	 * @Title: selectEdgeForInit
+	 * @Description: 逻辑计算层--搜索相邻的所有节点除了之前的初始节点外
+	 * @author 黄官易
+	 * @param currentVertexCode
+	 * @param lastVertexCode
+	 * @return
+	 * @throws Exception
+	 * @return List<Edge>
+	 * @date 2018年8月10日
+	 * @version 1.0
+	 */
 	public List<Edge> selectEdgeForInit(String currentVertexCode, String lastVertexCode) throws Exception {
 		StringBuffer sql = new StringBuffer(
 				"SELECT vertex_code,edge_status,edge_distance FROM (SELECT end_vertex_code AS vertex_code ,edge_status,edge_distance FROM agv_edge WHERE start_vertex_code =? UNION SELECT start_vertex_code AS vertex_code,edge_status,edge_distance FROM agv_edge WHERE end_vertex_code=?) a WHERE edge_status='normal' and vertex_code NOT IN (?)");
